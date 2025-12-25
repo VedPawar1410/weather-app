@@ -5,6 +5,7 @@ const city = document.createElement('h2');
 const information = document.createElement('p');
 const display = document.querySelector('.display-weather')
 const toggle = document.querySelectorAll('input[name="temperature"]');
+const weatherImage = document.createElement('img');
 //const unitToggleValue = document.querySelector('');
 
 
@@ -45,8 +46,10 @@ async function getWeather() {
         //DOM
         city.textContent = data.address;
         information.textContent = `${data.currentConditions.temp} ${getUnit()}`;
+        weatherImage.src = getWeatherImage();
         display.appendChild(city);
         display.appendChild(information);
+
 
     }
     catch(err){
@@ -62,3 +65,10 @@ toggle.forEach((degree)=>{
         getWeather();
     })
 })
+
+// Giphy image to display weather
+async function getWeather() {
+    const response = await fetch()
+    // https://developers.giphy.com/docs/api/endpoint/#translate
+    
+}
