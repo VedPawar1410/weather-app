@@ -5,9 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
+    
 </head>
 <body>
-    
+    <!-- can i just not use a label and input? -->
+    <form action=""> 
+        <label for="search-bar">Enter a location</label>
+        <input type="text" name="search-bar" id="search-bar">
+        <button type="submit" class="search-button">Search</button>
+    </form>
+    <div class="toggle-unit">
+        <form action="">
+            <input type="radio" id="celsius" name="temperature" value="C">
+            <label for="celsius">celsius</label><br>
+            <input type="radio" id="farenheit" name="temperature" value="F">
+            <label for="farenheit">farenheit</label><br>
+        </form>
+    </div>
+    <div class="display-weather">
+
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
