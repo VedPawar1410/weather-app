@@ -4,14 +4,21 @@ const btn = document.querySelector('.search-button');
 const city = document.createElement('h2');
 const information = document.createElement('p');
 const display = document.querySelector('.display-weather')
+const toggle = document.querySelectorAll('input[name="temperature"]');
 //const unitToggleValue = document.querySelector('');
-const params = new URLSearchParams({
-    key: "8U9E2EG3GY27RZH6PB9EM7QZ9",
-    //unitGroup: unitToggleValue, // e.g. "us" or "metric"
-    unitGroup: "us",
-    //include: "days,current,events",
-    contentType: "json"
-});
+
+
+function getUnitGroup(){
+    const selectedUnit = document.querySelector('input[name="temperature"]:checked').value;
+    console.log(selectedUnit);
+    return selectedUnit;
+}
+
+function getUnit(){
+    const unit = getUnitGroup();
+    if(unit == "us"){return "F";}
+    return "C";
+}
 
 btn.addEventListener('click', async(e)=>{
     e.preventDefault();
@@ -20,6 +27,13 @@ btn.addEventListener('click', async(e)=>{
 
 async function getWeather() {
     try{
+        const params = new URLSearchParams({
+            key: "8U9E2EG3GY27RZH6PB9EM7QZ9",
+            //unitGroup: "metric", // e.g. "us" or "metric"
+            unitGroup: getUnitGroup(),
+            //include: "days,current,events",
+            contentType: "json"
+        });
         const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${input.value}?${params.toString()}`);
 
         if(!response.ok){
@@ -30,7 +44,7 @@ async function getWeather() {
 
         //DOM
         city.textContent = data.address;
-        information.textContent = data.currentConditions.temp;
+        information.textContent = `${data.currentConditions.temp} ${getUnit()}`;
         display.appendChild(city);
         display.appendChild(information);
 
@@ -40,3 +54,11 @@ async function getWeather() {
     }
 
 }
+
+// toggle between units
+toggle.forEach((degree)=>{
+    degree.addEventListener('change', ()=>{
+        console.log("HI1");
+        getWeather();
+    })
+})
