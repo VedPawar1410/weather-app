@@ -1,6 +1,9 @@
 
 const input = document.querySelector('#search-bar');
 const btn = document.querySelector('.search-button');
+const city = document.createElement('h2');
+const information = document.createElement('p');
+const display = document.querySelector('.display-weather')
 //const unitToggleValue = document.querySelector('');
 const params = new URLSearchParams({
     key: "8U9E2EG3GY27RZH6PB9EM7QZ9",
@@ -24,6 +27,13 @@ async function getWeather() {
         }
         const data = await response.json();
         console.log(data);
+
+        //DOM
+        city.textContent = data.address;
+        information.textContent = data.currentConditions.temp;
+        display.appendChild(city);
+        display.appendChild(information);
+
     }
     catch(err){
         console.log(err);
