@@ -1,3 +1,4 @@
+import "./styles.css";
 
 const input = document.querySelector('#search-bar');
 const btn = document.querySelector('.search-button');
