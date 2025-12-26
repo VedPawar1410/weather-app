@@ -7,8 +7,15 @@ const weatherType = document.createElement('p');
 const display = document.querySelector('.display-weather')
 const toggle = document.querySelectorAll('input[name="temperature"]');
 const weatherImage = document.createElement('img');
+const loaderAnimation = document.querySelector('.loader');
 //const unitToggleValue = document.querySelector('');
 
+function showLoader(){
+    loaderAnimation.classList.add('active');
+}
+function removeLoader(){
+    loaderAnimation.classList.remove('active');
+}
 
 function getUnitGroup(){
     const selectedUnit = document.querySelector('input[name="temperature"]:checked').value;
@@ -29,6 +36,9 @@ btn.addEventListener('click', async(e)=>{
 
 async function getWeather() {
     try{
+        //display loading component
+        showLoader();
+
         const params = new URLSearchParams({
             key: "8U9E2EG3GY27RZH6PB9EM7QZ9",
             //unitGroup: "metric", // e.g. "us" or "metric"
@@ -61,6 +71,8 @@ async function getWeather() {
     }
     catch(err){
         console.log(err);
+    } finally{
+        removeLoader();
     }
 
 }
