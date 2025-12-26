@@ -3,6 +3,7 @@ const input = document.querySelector('#search-bar');
 const btn = document.querySelector('.search-button');
 const city = document.createElement('h2');
 const information = document.createElement('p');
+const weatherType = document.createElement('p');
 const display = document.querySelector('.display-weather')
 const toggle = document.querySelectorAll('input[name="temperature"]');
 const weatherImage = document.createElement('img');
@@ -46,9 +47,15 @@ async function getWeather() {
         //DOM
         city.textContent = data.address;
         information.textContent = `${data.currentConditions.temp} ${getUnit()}`;
-        weatherImage.src = getWeatherImage();
+        weatherType.textContent = `${data.currentConditions.icon}`;
+        getWeatherImage(data.currentConditions.icon).then(url=>{
+            weatherImage.src = url;
+        })
+        .catch(err=>console.log("Failed to load weather image: ", err));
         display.appendChild(city);
         display.appendChild(information);
+        display.appendChild(weatherType);
+        display.appendChild(weatherImage);
 
 
     }
@@ -67,8 +74,15 @@ toggle.forEach((degree)=>{
 })
 
 // Giphy image to display weather
-async function getWeather() {
-    const response = await fetch()
-    // https://developers.giphy.com/docs/api/endpoint/#translate
-    
+async function getWeatherImage(image) {
+    const parameters = new URLSearchParams({
+        api_key: "AovRxwIi87F31a3vKpAGQnSqoJXsRprT",
+        s: image
+    });
+    const response = await fetch(`https://api.giphy.com/v1/gifs/translate?${parameters.toString()}`);
+    if(!response.ok){
+        throw new Error(response.status);
+    }
+    const imageData = await response.json();
+    return imageData.data.images.original.url;
 }
