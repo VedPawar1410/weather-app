@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <!-- <script src="main.js" defer></script> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
+<script defer src="main.js"></script></head>
+<body>
+    <div class="container">
+        <h1>
+            Weather Station
+        </h1>
+        <!-- can i just not use a label and input? -->
+        <form class="form-weather" action=""> 
+            <label for="search-bar">Enter a location</label>
+            <input type="text" name="search-bar" id="search-bar">
+            <button type="submit" class="search-button">Search</button>
+        </form>
+        <div class="toggle-unit">
+            <form action="">
+                <input type="radio" id="celsius" name="temperature" value="metric">
+                <label for="celsius">celsius</label><br>
+                <input type="radio" id="farenheit" name="temperature" value="us" checked>
+                <label for="farenheit">farenheit</label><br>
+            </form>
+        </div>
+    </div>
+    <div class="display-weather">
+        <div class="loader"></div>
+    </div>
+
+    <!-- <script src="script.js"></script> -->
+</body>
+</html>
