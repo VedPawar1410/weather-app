@@ -2,8 +2,24 @@
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
+    font-family: comfortaa;
 }
 
+.comfortaa{
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+}
+
+body{
+    background-color: rgb(249, 255, 180);
+}
+
+h1{
+    font-weight: 900;
+    font-size: xx-large;
+}
 .container{
     display: flex;
     flex-direction: column;
@@ -16,5 +32,5 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    
 }
+
